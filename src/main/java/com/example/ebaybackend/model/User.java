@@ -1,10 +1,17 @@
 package com.example.ebaybackend.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -12,5 +19,6 @@ public class User {
     private Long id;
 
     private String username;
-    private Role role;
+    private String password;
+    private String role;
 }

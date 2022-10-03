@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
             User user = new User();
             user.setUsername(userCredentialsDTO.getUsername());
             user.setPassword(passwordEncoder.encode(userCredentialsDTO.getPassword()));
-            user.addRole("ROLE_USER");
+            user.setRole("ROLE_USER");
             userRepository.save(user);
             return getRegistrationDTO(userCredentialsDTO.getUsername());
         }

@@ -22,11 +22,11 @@ public class UserController {
 
     @PostMapping("/registration")
     public ResponseEntity<Object> registerUser(@RequestBody UserCredentialsDTO userCredentialsDTO) {
-        if (Objects.nonNull(userCredentialsDTO)
-                && Objects.nonNull(userCredentialsDTO.getUsername())
-                && Objects.nonNull(userCredentialsDTO.getPassword())
-                && !userCredentialsDTO.getUsername().isBlank()
-                && !userCredentialsDTO.getPassword().isBlank()
+        if (Objects.isNull(userCredentialsDTO)
+                || Objects.isNull(userCredentialsDTO.getUsername())
+                || Objects.isNull(userCredentialsDTO.getPassword())
+                || userCredentialsDTO.getUsername().isBlank()
+                || userCredentialsDTO.getPassword().isBlank()
         ) {
             throw new RuntimeException("Username or password is missing or blank!");
         }

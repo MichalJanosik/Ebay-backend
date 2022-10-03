@@ -12,22 +12,11 @@ import java.util.Set;
 public class RegistrationDTO {
     private Long id;
     private String username;
-    private Set<String> roles;
+    private String roles;
 
     public RegistrationDTO(User user) {
         id = user.getId();
         username = user.getUsername();
-        roles = convertRoles(user);
-    }
-
-    private Set<String> convertRoles(User user) {
-        Set<String> stringRoles = null;
-        if (Objects.nonNull(user.getRoles())) {
-            for (var role : user.getRoles()) {
-                stringRoles.add(role.getName());
-            }
-            return stringRoles;
-        }
-        return null;
+        roles = user.getRole();
     }
 }

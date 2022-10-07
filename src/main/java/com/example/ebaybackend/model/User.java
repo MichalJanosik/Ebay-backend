@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +21,24 @@ public class User {
 
     private String username;
     private String password;
-    private String role;
+
+    @ManyToMany
+    @JoinTable(name = "usersRoles",
+        joinColumns = @JoinColumn(name = "userId"),
+        inverseJoinColumns = @JoinColumn(name = "roleId")
+    )
+    private Set<Role> roles;
+
+    //>>>>>>>>>>>>>>Constructors>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    //>>>>>>>>>>>>>>>Methods>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
 }

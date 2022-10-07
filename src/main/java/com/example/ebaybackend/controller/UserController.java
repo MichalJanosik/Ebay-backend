@@ -30,7 +30,7 @@ public class UserController {
         ) {
             throw new RuntimeException("Username or password is missing or blank!");
         }
-        if (userCredentialsDTO.getPassword().length() > 8) {
+        if (userCredentialsDTO.getPassword().length() < 8) {
             throw new RuntimeException("Password must be at least 8 characters long!");
         }
 

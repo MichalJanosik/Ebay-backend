@@ -3,6 +3,7 @@ package com.example.ebaybackend.service;
 import com.example.ebaybackend.model.Role;
 import com.example.ebaybackend.repository.RoleRepository;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -18,8 +19,8 @@ class RoleServiceImplUnitTest {
 
     private static RoleRepository mockedRoleRepository;
 
-    @BeforeAll
-    static void initialSetup() {
+    @BeforeEach
+    public void initialSetup() {
         mockedRoleRepository = Mockito.mock(RoleRepository.class);
     }
 
@@ -53,14 +54,10 @@ class RoleServiceImplUnitTest {
 
     @Test
     void findRoleByName_NULL() {
-        String roleName = "ROLE_USER";
-        Optional<Role> roleOptional = Optional.empty();
+        Optional<Role> expected = Optional.empty();
 
-        Mockito.when(mockedRoleRepository.findRoleByName(roleName))
-                .thenReturn(roleOptional);
+        Optional<Role> roleFound = mockedRoleRepository.findRoleByName(null);
 
-        Optional<Role> roleFound = mockedRoleRepository.findRoleByName("ROLE_USER");
-
-        assertEquals(roleName, roleFound.get().getName());
+        assertEquals(expected, roleFound);
     }
 }

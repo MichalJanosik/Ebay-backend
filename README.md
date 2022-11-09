@@ -1,9 +1,9 @@
-# Ebay - backend app #
+# Ebay - backend app
 
-Simple backend Ebay clone. As a user, you can register, log in, add an item to sell, view items to sell.
+#### Simple backend Ebay clone. As a user, you can register, log in, add an item to sell, view items to sell.
 
 
-#### Tech Stack: ####
+### Tech stack used: ###
 - Java SE
 - Gradle
 - MySQL

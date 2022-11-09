@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -26,9 +27,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public RegistrationDTO getRegistrationDTO(String username) {
-        User user = userRepository.findByUsername(username).get();
-        return new RegistrationDTO(user);
+    public RegistrationDTO getRegistrationDTO(String username) throws UsernameNotFoundException {
+        var user = userRepository.findByUsername(username);
+        return user.map(RegistrationDTO::new)
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
     }
 
     @Override

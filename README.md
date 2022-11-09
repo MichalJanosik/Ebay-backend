@@ -5,12 +5,15 @@
 
 ### Tech stack used: ###
 - Java SE
+- IntelliJ IDEA
 - Gradle
 - MySQL
 - H2
 - Spring Boot
    - Spring Web
+   - Spring Developer Tools
    - Spring Data JPA
    - Hibernate
    - Spring Security
-- IntelliJ IDEA
+   - Lombok
+- JSON
